@@ -1,6 +1,6 @@
 import { tasks, createTask, getTasks } from "./tasks";
 import { getpriodicSchedule } from "./earliestDeadline";
-import { getApriodicSchedule } from "./scheduling";
+import { getApriodicSchedule } from "./FCFSAlgo";
 const generateTaskDOM = (task) => {
   const taskEl = document.createElement("a");
   const taskNameEl = document.createElement("span");
