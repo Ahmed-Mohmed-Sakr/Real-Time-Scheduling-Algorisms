@@ -1,4 +1,6 @@
 import { tasks, createTask, getTasks } from "./tasks";
+import { getpriodicSchedule } from "./earliestDeadline";
+import { getApriodicSchedule } from "./scheduling";
 const generateTaskDOM = (task) => {
   const taskEl = document.createElement("a");
   const taskNameEl = document.createElement("span");
@@ -54,9 +56,45 @@ const renderMessageEditPage = (validTask) => {
   taskMessageBody.appendChild(taskStatusMessageEl(validTask));
 };
 
+const createTaskDOM = (meaasge) => {
+  const messageEl = document.createElement("p");
+  messageEl.textContent = meaasge;
+  return messageEl;
+};
+
+const renderScheduling = (typeOfTasks, tasks) => {
+  const schedulingResults = document.querySelector("#scheduling");
+  const filterTaskes = tasks.filter((task) => {
+    if (typeOfTasks === "priodic") {
+      return task.valid === true && task.priodic == true;
+    } else if (typeOfTasks === "apriodic") {
+      return task.valid === true && task.priodic == false;
+    }
+  });
+
+  schedulingResults.innerHTML = "";
+
+  const schedulingTasks =
+    typeOfTasks === "priodic"
+      ? getpriodicSchedule(filterTaskes)
+      : getApriodicSchedule(filterTaskes);
+
+  if (typeOfTasks === "priodic") {
+    const messageEL = createTaskDOM(
+      "****Earliest deadline scheduling using completion deadlines**** :)"
+    );
+    schedulingResults.appendChild(messageEL);
+  }
+  schedulingTasks.forEach((message) => {
+    const messageEl = createTaskDOM(message);
+    schedulingResults.appendChild(messageEl);
+  });
+};
+
 export {
   renderTasks,
   generateTaskDOM,
   taskStatusMessageEl,
   renderMessageEditPage,
+  renderScheduling,
 };
