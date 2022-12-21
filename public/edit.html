@@ -14,13 +14,15 @@
 
     <a href="index.html">Home</a>
 
-    <input placeholder="Task Name" id="task-name" />
-    <input placeholder="Arrival Time" id="arrival-time" />
-    <input placeholder="Execution Time" id="execution-time" />
-    <input placeholder="Ending Deadline" id="ending-deadline" />
+    <input type="text" placeholder="Task Name" id="task-name" />
+    <input type="number" placeholder="Arrival Time" id="arrival-time" />
+    <input type="number" placeholder="Execution Time" id="execution-time" />
+    <input type="number" placeholder="Ending Deadline" id="ending-deadline" />
     <label> <input type="checkbox" id="periodic-task" /> Periodic Task </label>
 
     <button id="remove-task">reomve Task</button>
+
+    <div id="task-status"></div>
 
     <script src="scripts/edit-bundle.js"></script>
   </body>

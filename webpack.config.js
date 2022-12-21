@@ -4,6 +4,7 @@ module.exports = {
   entry: {
     index: ["babel-polyfill", "./src/index.js"],
     edit: ["babel-polyfill", "./src/edit.js"],
+    scheduling: ["babel-polyfill", "./src/scheduling.js"],
   },
   output: {
     path: path.resolve(__dirname, "public/scripts"),

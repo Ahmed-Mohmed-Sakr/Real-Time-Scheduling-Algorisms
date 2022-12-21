@@ -1,4 +1,5 @@
 import { getTasks, updateTask, removeTask } from "./tasks";
+import { renderMessageEditPage } from "./views";
 
 const taskName = document.querySelector("#task-name");
 const arrivalTime = document.querySelector("#arrival-time");
@@ -21,6 +22,8 @@ executionTime.value = task.executionTime;
 endingDeadline.value = task.endingDeadline;
 periodicTask.checked = task.priodic;
 
+renderMessageEditPage(task.valid);
+
 taskName.addEventListener("input", (e) => {
   updateTask(taskId, {
     taskName: e.target.value,
@@ -31,16 +34,19 @@ arrivalTime.addEventListener("input", (e) => {
   updateTask(taskId, {
     arrivalTime: e.target.value,
   });
+  renderMessageEditPage(task.valid);
 });
 executionTime.addEventListener("input", (e) => {
   updateTask(taskId, {
     executionTime: e.target.value,
   });
+  renderMessageEditPage(task.valid);
 });
 endingDeadline.addEventListener("input", (e) => {
   updateTask(taskId, {
     endingDeadline: e.target.value,
   });
+  renderMessageEditPage(task.valid);
 });
 periodicTask.addEventListener("input", (e) => {
   updateTask(taskId, {

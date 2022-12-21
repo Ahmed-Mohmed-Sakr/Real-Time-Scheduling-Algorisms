@@ -1,5 +1,5 @@
 import uuidv4 from "uuid/v4";
-
+import { validTask } from "./filters";
 let tasks = [];
 
 const loadTasks = () => {
@@ -28,6 +28,7 @@ const createTask = () => {
     executionTime: "",
     endingDeadline: "",
     priodic: false,
+    valid: false,
   });
   saveTasks();
 
@@ -66,6 +67,7 @@ const updateTask = (id, updates) => {
     task.priodic = updates.priodic;
   }
 
+  task.valid = validTask(task);
   saveTasks();
 };
 

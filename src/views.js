@@ -6,6 +6,7 @@ const generateTaskDOM = (task) => {
 
   taskEl.setAttribute("href", `/edit.html#${task.id}`);
   taskEl.style.display = "block";
+  taskEl.style.marginBottom = "12px";
 
   taskNameEl.textContent = `Task Name: ${task.taskName} --- `;
   taskEl.appendChild(taskNameEl);
@@ -17,11 +18,20 @@ const generateTaskDOM = (task) => {
   }
   taskEl.appendChild(taskTypeEl);
 
+  taskEl.appendChild(taskStatusMessageEl(task.valid));
+
   return taskEl;
+};
+
+const taskStatusMessageEl = (taskStatus) => {
+  const taskStatusEl = document.createElement("span");
+  taskStatusEl.textContent = ` --- ${taskStatus ? "Valid" : "UnValid"} Task`;
+  return taskStatusEl;
 };
 
 const renderTasks = () => {
   const tasksEl = document.querySelector("#tasks");
+  const emptyLineEl = document.createElement("br");
   const tasks = getTasks();
 
   tasksEl.innerHTML = "";
@@ -38,4 +48,15 @@ const renderTasks = () => {
   }
 };
 
-export { renderTasks, generateTaskDOM };
+const renderMessageEditPage = (validTask) => {
+  const taskMessageBody = document.querySelector("#task-status");
+  taskMessageBody.innerHTML = "";
+  taskMessageBody.appendChild(taskStatusMessageEl(validTask));
+};
+
+export {
+  renderTasks,
+  generateTaskDOM,
+  taskStatusMessageEl,
+  renderMessageEditPage,
+};
