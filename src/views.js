@@ -84,7 +84,13 @@ const renderScheduling = (typeOfTasks, tasks) => {
       "****Earliest deadline scheduling using completion deadlines**** :)"
     );
     schedulingResults.appendChild(messageEL);
+  } else if (typeOfTasks === "apriodic") {
+    const messageEL = createTaskDOM(
+      "**** First-come first-served (FCFS) **** :)"
+    );
+    schedulingResults.appendChild(messageEL);
   }
+
   schedulingTasks.forEach((message) => {
     const messageEl = createTaskDOM(message);
     schedulingResults.appendChild(messageEl);
